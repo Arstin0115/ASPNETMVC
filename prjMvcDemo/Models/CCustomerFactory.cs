@@ -166,5 +166,16 @@ namespace prjMvcDemo.Models
             paras.Add(new SqlParameter("K_KEYWORD", "%"+(object)keyword+"%"));
             return queryBySql(sql, paras);
         }
+
+        public CCustomer queryByEmail(string email)
+        {
+            string sql = "SELECT * FROM tCustomer WHERE fEmail=@K_FEMAIL";
+            List<SqlParameter> paras = new List<SqlParameter>();
+            paras.Add(new SqlParameter("K_FEMAIL", (object)email));
+            List<CCustomer> list = queryBySql(sql, paras);
+            if (list.Count == 0)
+                return null;
+            return list[0];
+        }
     }
 }
